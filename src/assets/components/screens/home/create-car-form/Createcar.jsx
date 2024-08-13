@@ -25,29 +25,31 @@ const CreateCar = ({setCars}) => {
         fetchData()
     }, [])
 
-    const createNewCar = data =>{
-        console.log(data)
+    const createNewCar = e =>{
         e.preventDefault()
         setCars(prev => [{id: prev.lenght +1 , ...data} , ...prev])
         setData(clearData)
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(CreateCar)}>
+        <form className={styles.form} onSubmit={handleSubmit(createNewCar)}>
             <input 
             placeholder='name'
-            {...register('name' , {required: true })}
+            onChange={e => setData(prev => ({...prev , name:e.target.value}))}
+            value={data.name}
             />
             <input 
             placeholder="price"
-            {...register('price' , {required: true })}
+            onChange={e => setData(prev =>({...prev , price:e.target.value}))}
+            value={data.price}
             />
             <input 
-            placeholder="image" 
-            {...register('image' , {required: true })}
+            placeholder="image"
+            onChange={e => setData(prev => ({...prev , image:e.target.value}))}
+            value={data.image}
             />
 
-            <button className='btn'>Create</button>
+            <button className='btn' onClick={e => createNewCar(e)}>Create</button>
         </form>
     )
 }

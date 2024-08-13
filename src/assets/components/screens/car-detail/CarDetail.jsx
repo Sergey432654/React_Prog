@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { carService } from '../../../../service/car.service'
 import { Link } from 'react-router-dom'
 
+
 const CarDetail = () => {
     const { id } = useParams()
     const [car, setCar] = useState({})
@@ -21,7 +22,7 @@ const CarDetail = () => {
   if(!car?.name) return <p>...Loading</p>
   return (
     <div>
-    <Link to='/'>Back</Link>
+    <Link color='white' to='/'>Back</Link>
     <div><Caritem car={car}/></div>
     </div>
   )
