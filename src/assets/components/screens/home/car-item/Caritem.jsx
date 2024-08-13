@@ -1,4 +1,5 @@
- import styles from '../Home.module.css'
+ import { Link } from 'react-router-dom'
+import styles from '../Home.module.css'
  function Caritem({car}){
         return (
             <div key={car.id} className={styles.item}>
@@ -9,7 +10,7 @@
                 <div className={styles.info}>
                 <h2>{car.name}</h2>
                 <p>{car.price}</p>
-                <button>Read more</button>
+                <Link className='btn' to={`/car/${car.id}`}>Read more</Link>
                 </div>
              </div>
         )

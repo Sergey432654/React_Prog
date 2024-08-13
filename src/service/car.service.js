@@ -10,6 +10,6 @@ export const carService ={
         const respons = await axios.get(`http://localhost:3000/cars?id=${id}`)
 
         
-    return respons.data
-}
+    return respons.data[0]
+},
 }

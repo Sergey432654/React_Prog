@@ -2,6 +2,7 @@ import styles from './createcarform.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { carService } from '../../../../../service/car.service';
+import { useForm } from 'react-hook-form';
 const clearData = {
     name: '' ,
     price: '' ,
@@ -10,6 +11,10 @@ const clearData = {
 
 const CreateCar = ({setCars}) => {
     const [data , setData] = useState([])
+
+    const {register ,reset, handleSubmit} = useForm({
+        mode: 'onChange' 
+    })
     
     useEffect(() => {
         const fetchData = async () => {
@@ -20,31 +25,29 @@ const CreateCar = ({setCars}) => {
         fetchData()
     }, [])
 
-    const createNewCar = e =>{
+    const createNewCar = data =>{
+        console.log(data)
         e.preventDefault()
         setCars(prev => [{id: prev.lenght +1 , ...data} , ...prev])
         setData(clearData)
     }
 
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(CreateCar)}>
             <input 
             placeholder='name'
-            onChange={e => setData(prev => ({...prev , name:e.target.value}))}
-            value={data.name}
+            {...register('name' , {required: true })}
             />
             <input 
             placeholder="price"
-            onChange={e => setData(prev =>({...prev , price:e.target.value}))}
-            value={data.price}
+            {...register('price' , {required: true })}
             />
             <input 
-            placeholder="image"
-            onChange={e => setData(prev => ({...prev , image:e.target.value}))}
-            value={data.image}
+            placeholder="image" 
+            {...register('image' , {required: true })}
             />
 
-            <button className='btn' onClick={e => createNewCar(e)}>Create</button>
+            <button className='btn'>Create</button>
         </form>
     )
 }
