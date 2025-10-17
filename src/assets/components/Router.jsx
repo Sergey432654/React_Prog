@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./screens/home/Home"
 import CarDetail from "./screens/car-detail/CarDetail"
+import UserLogin from "./screens/autorization/UserLogin"
 
 const Router = () =>{
     return(
@@ -8,6 +9,8 @@ const Router = () =>{
             <Routes>
                 <Route element={<Home/>} path='/'/>
                 <Route element={<CarDetail/>} path='/car/:id'/>
+                <Route element={<UserLogin/>} path='/aunorization'/>
+
                 <Route path='*' element={<div>Not found</div>}/>
             </Routes>
         </BrowserRouter>
